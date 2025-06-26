@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adaptive Navbar</title>
+  <style>
+    nav {
+      background-color: #333;
+      padding: 1rem;
+    }
+    .nav-list {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .nav-item {
+      margin: 0 1rem;
+    }
+    .nav-item a {
+      color: white;
+      text-decoration: none;
+    }
+    .nav-item a:hover, .nav-item a:focus {
+      color: #ddd;
+    }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      .nav-list {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+      }
+      .nav-list.active {
+        display: flex;
+      }
+      .nav-item {
+        margin: 1rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main Navigation">
+    <button class="menu-toggle" aria-expanded="false" aria-controls="nav-list">☰</button>
+    <ul class="nav-list" id="nav-list">
+      <li class="nav-item"><a href="#home" tabindex="0">Home</a></li>
+      <li class="nav-item"><a href="#about" tabindex="0">About</a></li>
+      <li class="nav-item"><a href="#contact" tabindex="0">Contact</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const toggleButton = document.querySelector('.menu-toggle');
+    const navList = document.querySelector('.nav-list');
+
+    toggleButton.addEventListener('click', () => {
+      const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
+      toggleButton.setAttribute('aria-expanded', !expanded);
+      navList.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
